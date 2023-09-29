@@ -15,8 +15,8 @@ module.exports={
     },
     doLogin(userData) {
         return new Promise(async(resolve,reject)=>{
+          try{
         let user = await db.get().collection(collection.USER_COLLECTION).findOne({email:userData.email})
-        // console.log(user._id)
        if(user){
          if(user.password==userData.password){
            
@@ -25,20 +25,30 @@ module.exports={
         {expiresIn:myjwt.jwtExpiresIn})
         resolve(token)
         }else{
-            resolve()
+            resolve('incurect Password')
         }
+       } else{
+        resolve("user not fond")
        }
+       } catch(err){
+         reject(err)
+       }
+       }
+       )
          
-    })
+    
     },
     viewProfile(userid){
         return new Promise((resolve,reject)=>{
        db.get().collection(collection.USER_COLLECTION).findOne({_id:ObjectId(userid)}).then((user)=>{
-        console.log("+++++++++++")
         if(user){
         resolve(user.name)
         }
-        resolve()
+        else{
+          resolve("user not found")
+        }
+       }).catch((err)=>{
+        reject(err)
        })
     })
     },
@@ -54,6 +64,8 @@ module.exports={
             }
         }).then((responts)=>{
           resolve()  
+        }).catch((err)=>{
+          reject(err)
         })
         
     })

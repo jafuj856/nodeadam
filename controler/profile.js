@@ -18,7 +18,7 @@ function editProfile(req,res){
         fs.unlinkSync(imagepath);
       }
       let image =req.files.image
-      image.mv('../node/public/user-images/'+req.user.userId+'.jpg')
+      image.mv('../nodeadam/public/user-images/'+req.user.userId+'.jpg')
     }
       res.json(true)
      })

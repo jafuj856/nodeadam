@@ -9,10 +9,7 @@ router.get('/',(req,res)=>{
   res.json(true)
 })
 router.post('/signup',signup)
-  
- 
 router.post('/login',login)
-
 router.get('/view-profile',authenticate,viewprofile)
 router.put('/user-edit',authenticate,editProfile)
 module.exports = router; 

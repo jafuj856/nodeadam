@@ -4,7 +4,7 @@ const config = require('../config/jwt');
 function authenticateToken(req, res, next) {
   const AuthHeader = req.header('Authorization');
 
-  if (!AuthHeader) {
+  if (!AuthHeader) {   
 
     return res.status(401).json({ message: 'Unauthorized' });
   }
