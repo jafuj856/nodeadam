@@ -1,7 +1,8 @@
 var userhelper = require('../helpers/userhelper');
 function signup(req,res){
    console.log('++++++++')
-    userhelper.doSiginUp(req.body,(userid)=>{
+    userhelper.doSiginUp(res,req.body,(response)=>{
+      console.log(response)
         if(req.files){
         let image =req.files.image
         console.log(image)
@@ -13,7 +14,7 @@ function signup(req,res){
            }
         })
         }
-        res.json(true)
+        res.json(response)
       })
       
 

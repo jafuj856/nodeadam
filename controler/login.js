@@ -1,6 +1,6 @@
 var userhelper = require('../helpers/userhelper');
 function login(req,res) {
-    userhelper.doLogin(req.body).then((responts)=>{
+    userhelper.doLogin(res,req.body).then((responts)=>{
         if(responts){
         res.json({responts})
         }
